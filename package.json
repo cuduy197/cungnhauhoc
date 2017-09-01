@@ -1,0 +1,37 @@
+{
+    "name": "hello",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "preact watch --template src/template.html",
+        "start2": "if-env NODE_ENV=production && yarn run -s serve || yarn run -s dev",
+        "build": "preact build --no-prerender --template src/template.html",
+        "serve": "cd build && serve -o",
+        "test": "eslint src && preact test"
+    },
+    "eslintConfig": {
+        "extends": "eslint-config-synacor"
+    },
+    "devDependencies": {
+        "babel-plugin-import": "^1.4.0",
+        "babel-plugin-transform-runtime": "^6.23.0",
+        "eslint": "^4.5.0",
+        "eslint-config-synacor": "^1.1.0",
+        "if-env": "^1.0.0",
+        "preact-cli": "^1.4.1"
+    },
+    "dependencies": {
+        "antd": "^2.12.7",
+        "firebase": "^4.3.0",
+        "mo-js": "^0.288.2",
+        "mobx": "^3.2.2",
+        "mobx-react": "^4.2.2",
+        "parse": "^1.10.0",
+        "preact": "^8.2.4",
+        "preact-compat": "^3.17.0",
+        "preact-helmet": "^4.0.0-alpha-3",
+        "preact-router": "^2.5.7",
+        "react-typist": "^1.1.1"
+    }
+}

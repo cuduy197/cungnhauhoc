@@ -1,0 +1,17 @@
+.home {
+    padding: 56px 20px;
+    height: 100vh;
+    min-height: 100%;
+    width: 100%;
+    text-align: center;
+    background: url("http://imgur.com/download/ffDoZgZ") no-repeat center center fixed;
+    background-size: cover;
+}
+
+u,
+b,
+h1,
+h2,
+h3 {
+    color: white;
+}

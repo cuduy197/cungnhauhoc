@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title> HocBai.XYZ 😄 </title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" integrity="sha256-j+P6EZJVrbXgwSR5Mx+eCS6FvP9Wq27MBRC/ogVriY0=" crossorigin="anonymous" />
+
+
+    <% if (htmlWebpackPlugin.options.manifest.theme_color) { %>
+        <meta name="theme-color" content="#1DA57A">
+        <% } %>
+            <% for (var chunk of webpack.chunks) { %>
+                <% if (chunk.names.length === 1 && chunk.names[0] === 'polyfills') continue; %>
+                    <% for (var file of chunk.files) { %>
+                        <% if (htmlWebpackPlugin.options.preload && file.match(/\.(js|css)$/)) { %>
+                            <link rel="preload" href="<%= htmlWebpackPlugin.files.publicPath + file %>" as="<%= file.match(/\.css$/)?'style':'script' %>">
+                            <% } else if (file.match(/manifest\.json$/)) { %>
+                                <link rel="manifest" href="<%= htmlWebpackPlugin.files.publicPath + file %>">
+                                <% } %>
+                                    <% } %>
+                                        <% } %>
+</head>
+
+<body>
+    <script>
+        function loadJs(d, s, id) {
+            if (!String.prototype.normalize) {
+                // alert('Init polifill normalize() ')
+                var js, fjs = d.getElementsByTagName(s)[0];
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement(s);
+                js.id = id;
+                js.src = "//cdn.rawgit.com/cuduy197/f7a2fe232e4ff28088cce4fbeaf0b4fa/raw/84a15abcbace64e93ffffa4d2fe03f2768419b3a/unorm.js";
+                fjs.parentNode.insertBefore(js, fjs);
+            }
+        };
+
+        loadJs(document, 'script', 'polyfill_normalize');
+    </script>
+
+    <%= htmlWebpackPlugin.options.ssr({
+			url: '/'
+		}) %>
+        <script defer src="<%= htmlWebpackPlugin.files.chunks['bundle'].entry %>"></script>
+        <script>
+            window.fetch || document.write('<script src="<%= htmlWebpackPlugin.files.chunks["polyfills"].entry %>"><\/script>');
+        </script>
+
+</body>
+
+</html>

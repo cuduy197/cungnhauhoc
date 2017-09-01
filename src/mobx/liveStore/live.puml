@@ -1,0 +1,33 @@
+@startuml
+
+|ROOMLIST|
+:WATCH;
+note left
+    UPDATE()
+    ====
+    FETCH()
+end note
+:ENTER/CREATE;
+note left
+    UN_WATCH()
+end note
+|#lightgreen|RoomGame|
+:WATCH;
+note right
+    isJoin = true
+    ====
+    UPDATE()
+end note
+:EXIT;
+note right
+    destroy()
+    ====
+    UN_WATCH()
+end note
+|ROOMLIST|
+:WATCH;
+note left
+    FETCH()
+end note
+
+@enduml

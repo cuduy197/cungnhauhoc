@@ -1,0 +1,17 @@
+.profile {
+    padding: 56px 20px;
+    height: 100vh;
+    min-height: 100%;
+    width: 100%;
+    text-align: center;
+    background: url("http://imgur.com/download/ffDoZgZ") no-repeat center center fixed;
+    background-size: cover;
+}
+
+img {
+    border-radius: 5px;
+}
+
+h1 {
+    color: white;
+}
